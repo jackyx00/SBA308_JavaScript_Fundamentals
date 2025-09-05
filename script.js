@@ -134,7 +134,22 @@ let submissions = [
   }
 ];
 
+function crossCheck (main, secondary) {
 
+    for (let i = 0; i < secondary.length; i++) {
+        let found = false;
+        for (let j = 0; j < main.assignments.length; j++) {
+            if (secondary[i].assignment_id === main.assignments[j].id) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            throw new Error(`No such Assignment ID ${secondary[i].assignment_id}`)
+        }
+    }
+    return true;
+}
 
 function get (submissions, AssignmentGroup) {
     let newLearners = [];
@@ -155,7 +170,11 @@ function get (submissions, AssignmentGroup) {
                 continue;
             }
         }
-        
+        try {
+            crossCheck(AssignmentGroup, newLearners);
+        } catch (error) {
+            console.log(error);
+        }
     }
     return newLearners;
 }
