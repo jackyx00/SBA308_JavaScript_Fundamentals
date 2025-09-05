@@ -98,70 +98,19 @@ try {
     console.log(error);
 }
 
-let submissions = [
-  {
-    learner_id: 125,
-    assignment_id: 1,
-    submission: {
-      submitted_at: "2023-01-25",
-      score: 47
-    }
-  },
-  {
-    learner_id: 125,
-    assignment_id: 2,
-    submission: {
-      submitted_at: "2023-02-12",
-      score: 150
-    }
-  },
-  {
-    learner_id: 125,
-    assignment_id: 3,
-    submission: {
-      submitted_at: "2023-01-25",
-      score: 400
-    }
-  },
-  {
-    learner_id: 132,
-    assignment_id: 1,
-    submission: {
-      submitted_at: "2023-01-24",
-      score: 39
-    }
-  },
-  {
-    learner_id: 132,
-    assignment_id: 2,
-    submission: {
-      submitted_at: "2023-03-07",
-      score: 140
-    }
-  }
-];
-
-function get (obj) {
+function getLearnerData(course, ag, submissions) {
+  // here, we would process this data to achieve the desired result.
     let sameLearnerId = {};
 
-    for (let i = 0; i < obj.length; i++) {
-    let learnerid = obj[i].learner_id;
+    for (let i = 0; i < submissions.length; i++) {
+    let learnerid = submissions[i].learner_id;
 
     if (!sameLearnerId[learnerid]) {
         sameLearnerId[learnerid] = [];
     }
 
-    sameLearnerId[learnerid].push(obj[i])
+    sameLearnerId[learnerid].push(submissions[i])
   }
-
-  return sameLearnerId;
-}
-
-console.log(get (submissions));
-
-function getLearnerData(course, ag, submissions) {
-  // here, we would process this data to achieve the desired result.
-
 
   const result = [
     {
